@@ -1,0 +1,30 @@
+linux-firmware-raspi2 (1.20151118+b70b451-0ubuntu1) xenial; urgency=low
+
+  * Switch package naming to fall into the linux-firmware-* hierachy.
+  * Move to section multiverse/misc.
+  * Update standards version to 3.9.7 no changes required.
+  * Check that /boot/firmware is a mount point (or that we are in a chroot).
+  * We do not need to install LICENCE.broadcom.
+
+ -- Andy Whitcroft <apw@ubuntu.com>  Wed, 20 Apr 2016 12:23:41 +0100
+
+raspberrypi2-firmware (4.1.15-b70b451-0ubuntu1) xenial; urgency=medium
+
+  * Initial upload to Ubuntu.
+  * Add lintian overrides to suppress errors about known binary-only firmware.
+  * Set upload component to restricted.
+  * Fix inconsistency between upstream LICENSE file and debian/copyright.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Fri, 05 Feb 2016 01:06:55 +0000
+
+raspberrypi2-firmware (4.1.15-b70b451-1) xenial; urgency=medium
+
+  * Update to version 4.1.15 @ b70b451
+
+ -- Paolo Pisati <paolo.pisati@canonical.com>  Fri, 08 Jan 2016 10:53:53 +0100
+
+raspberrypi2-firmware (4.1.10-ba7a8fb-1) wily; urgency=low
+
+  * Initial import - https://github.com/raspberrypi/firmware / master @ ba7a8fb
+
+ -- Paolo Pisati <paolo.pisati@canonical.com>  Mon, 19 Oct 2015 15:34:09 +0200

@@ -1,0 +1,6 @@
+# This is non-free firmware (--> multiverse component), sourceless files are allowed
+linux-firmware-raspi2 source: source-contains-prebuilt-binary boot/start.elf
+linux-firmware-raspi2 source: source-contains-prebuilt-binary boot/start_cd.elf
+linux-firmware-raspi2 source: source-contains-prebuilt-binary boot/start_db.elf
+linux-firmware-raspi2 source: source-contains-prebuilt-binary boot/start_x.elf
+linux-firmware-raspi2 source: debian-watch-may-check-gpg-signature

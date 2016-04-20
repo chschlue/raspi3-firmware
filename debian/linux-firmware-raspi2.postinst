@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+  configure)
+    if ! ischroot; then
+      if ! mountpoint -q /boot/firmware; then
+        echo "Error: missing /boot/firmware, did you forget to mount it?" >&2
+        exit 1
+      fi
+    fi
+    for file in /usr/lib/linux-firmware-raspi2/*
+    do
+	file=$( basename "$file" )
+        cp "/usr/lib/linux-firmware-raspi2/$file" "/boot/firmware/$file"
+        sync -f "/boot/firmware/$file"
+    done
+    ;;
+esac
+
+exit 0
+
+#DEBHELPER#
