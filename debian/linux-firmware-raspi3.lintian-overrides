@@ -1,0 +1,54 @@
+# The package distributes non-free binaries (for which the source is not
+# public) and contains bootloader code, so override a bunch of lintian warnings
+binary-from-other-architecture usr/lib/linux-firmware-raspi3/start.elf
+binary-from-other-architecture usr/lib/linux-firmware-raspi3/start_cd.elf
+binary-from-other-architecture usr/lib/linux-firmware-raspi3/start_db.elf
+binary-from-other-architecture usr/lib/linux-firmware-raspi3/start_x.elf
+
+embedded-library usr/lib/linux-firmware-raspi3/start.elf: libpng
+embedded-library usr/lib/linux-firmware-raspi3/start_db.elf: libpng
+embedded-library usr/lib/linux-firmware-raspi3/start_db.elf: libtheora
+embedded-library usr/lib/linux-firmware-raspi3/start_x.elf: libpng
+embedded-library usr/lib/linux-firmware-raspi3/start_x.elf: libtheora
+
+statically-linked-binary usr/lib/linux-firmware-raspi3/start.elf
+statically-linked-binary usr/lib/linux-firmware-raspi3/start_cd.elf
+statically-linked-binary usr/lib/linux-firmware-raspi3/start_db.elf
+statically-linked-binary usr/lib/linux-firmware-raspi3/start_x.elf
+
+binary-has-unneeded-section usr/lib/linux-firmware-raspi3/start.elf .comment
+binary-has-unneeded-section usr/lib/linux-firmware-raspi3/start_cd.elf .comment
+binary-has-unneeded-section usr/lib/linux-firmware-raspi3/start_db.elf .comment
+binary-has-unneeded-section usr/lib/linux-firmware-raspi3/start_x.elf .comment
+
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start.elf reenable re-enable
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start.elf postion position
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start.elf intial initial
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start.elf Recyling Recycling
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start.elf rountine routine
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start.elf recieved received
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start.elf erorr error
+
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_db.elf postion position
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_db.elf reenable re-enable
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_db.elf trucate truncate
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_db.elf calulated calculated
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_db.elf intial initial
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_db.elf Recyling Recycling
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_db.elf rountine routine
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_db.elf recieved received
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_db.elf erorr error
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_db.elf preceeding preceding
+
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_x.elf postion position
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_x.elf reenable re-enable
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_x.elf trucate truncate
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_x.elf calulated calculated
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_x.elf intial initial
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_x.elf Recyling Recycling
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_x.elf rountine routine
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_x.elf recieved received
+spelling-error-in-binary usr/lib/linux-firmware-raspi3/start_x.elf erorr error
+
+# Upstream does not provide a changelog
+no-upstream-changelog
