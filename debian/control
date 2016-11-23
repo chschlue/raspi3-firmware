@@ -13,3 +13,5 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Raspberry Pi 3 GPU firmware and bootloaders
  This package contains all the proprietary files necessary to boot a
  Raspberry Pi 3 board.
+ .
+ Raspberry Pi is a trademark of the Raspberry Pi Foundation.
