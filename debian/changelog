@@ -1,3 +1,21 @@
+linux-firmware-raspi3 (1.20161123-1) unstable; urgency=medium
+
+  * Initial upload of the package to Debian, based on the
+    linux-firmware-raspi2 work in Ubuntu (Thanks!) (Closes: #845488)
+  * Rename package to linux-firmware-raspi3
+  * s/armhf/arm64/ for the Raspberry Pi 3
+  * postinst: allow sync to fail
+  * add kernel postinst.d hook to copy images and update configs
+  * change maintainer to newly-created pkg-raspi
+  * bump debhelper compat to 10, bump standards-version to 3.9.8
+  * add lintian-overrides for binary package
+  * package description: add trademark acknowledgement
+  * add Vcs-* tags
+  * New upstream version 1.20161123
+    (git revision 18b5b6977d021937d82fb94010c99d84b403a08a)
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Thu, 24 Nov 2016 09:45:42 +0100
+
 linux-firmware-raspi2 (1.20151118+b70b451-0ubuntu1) xenial; urgency=low
 
   * Switch package naming to fall into the linux-firmware-* hierachy.
