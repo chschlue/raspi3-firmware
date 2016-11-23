@@ -1,1 +1,2 @@
 boot/* usr/lib/linux-firmware-raspi3
+debian/kernel etc

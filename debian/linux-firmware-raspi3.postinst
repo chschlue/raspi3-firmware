@@ -1,23 +1,33 @@
 #!/bin/sh
+# vim:ts=2:sw=2:et
 
 set -e
 
 case "$1" in
   configure)
+
     if ! ischroot; then
       if ! mountpoint -q /boot/firmware; then
         echo "Error: missing /boot/firmware, did you forget to mount it?" >&2
         exit 1
       fi
     fi
+
     for file in /usr/lib/linux-firmware-raspi3/*
     do
-	file=$( basename "$file" )
-        cp "/usr/lib/linux-firmware-raspi3/$file" "/boot/firmware/$file"
-        # sync might fail when running under qemu, which, as of version 2.7,
-        # has not implemented the syncfs syscall.
-        sync -f "/boot/firmware/$file" || true
+      file=$( basename "$file" )
+      cp "/usr/lib/linux-firmware-raspi3/$file" "/boot/firmware/$file"
+      # sync might fail when running under qemu, which, as of version 2.7,
+      # has not implemented the syncfs syscall.
+      sync -f "/boot/firmware/$file" || true
     done
+
+    if [ -z "$2" ]; then
+      # Manually trigger the kernel postinst hook when linux-firmware-raspi3 is
+      # installed for the first time, as the kernel package might already be
+      # installed and hence the hook would not get triggered otherwise.
+      DEB_MAINT_PARAMS="configure" /etc/kernel/postinst.d/linux-firmware-raspi3
+    fi
     ;;
 esac
 

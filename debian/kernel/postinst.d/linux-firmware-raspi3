@@ -1,0 +1,81 @@
+#!/bin/sh
+# vim:ts=2:sw=2:et
+# see also:
+# https://kernel-handbook.alioth.debian.org/ch-update-hooks.html#s-kernel-hooks
+
+set -e
+
+# Play nice when run under debconf.
+exec </dev/null >&2
+
+eval set -- "$DEB_MAINT_PARAMS"
+
+# Only run on configure to avoid unnecessary work.
+if [ -z "$1" ] || [ "$1" != "configure" ]; then
+  exit 0
+fi
+
+if ! ischroot; then
+  if ! mountpoint -q /boot/firmware; then
+    echo "linux-firmware-raspi3: missing /boot/firmware, did you forget to mount it?" >&2
+    exit 1
+  fi
+fi
+
+latest_kernel=$(ls -1 /boot/vmlinuz-* | sort -r | head -1)
+if [ -z "$latest_kernel" ]; then
+  echo "linux-firmware-raspi3: no kernel found in /boot/vmlinuz-*, cannot populate /boot/firmware"
+  exit 0
+fi
+
+latest_initrd=$(ls -1 /boot/initrd.img-* | sort -r | head -1)
+if [ -z "$latest_initrd" ]; then
+  echo "linux-firmware-raspi3: no initrd found in /boot/initrd.img-*, cannot populate /boot/firmware"
+  exit 0
+fi
+
+latest_dtb="/usr/lib/linux-image-${latest_kernel#/boot/vmlinuz-}/broadcom/bcm2837-rpi-3-b.dtb"
+
+if [ ! -e "$latest_dtb" ]; then
+  echo "linux-firmware-raspi3: device tree file ${latest_dtb} does not exist, cannot populate /boot/firmware"
+  exit 0
+fi
+
+cp "$latest_kernel" /boot/firmware/
+cp "$latest_initrd" /boot/firmware/
+cp "$latest_dtb" /boot/firmware/
+
+latest_kernel_basename=$(basename "$latest_kernel")
+latest_initrd_basename=$(basename "$latest_initrd")
+latest_dtb_basename=$(basename "$latest_dtb")
+
+cat >/boot/firmware/config.txt <<EOF
+# Switch the CPU from ARMv7 into ARMv8 (aarch64) mode
+arm_control=0x200
+
+enable_uart=1
+
+device_tree=${latest_dtb_basename}
+kernel=${latest_kernel_basename}
+# For details on the initramfs directive, see
+# https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=10532
+initramfs ${latest_initrd_basename}
+EOF
+
+# Our cmdline.txt is the default (see http://elinux.org/RPi_cmdline.txt), but
+# without parameters for drivers we do not have (e.g. dwc_otg.lpm_enable) or
+# parameters we do not need (e.g. rootfstype=, as we are using an initrd).
+cat >/boot/firmware/cmdline.txt <<EOF
+console=ttyAMA0,115200 root=/dev/mmcblk0p2 elevator=deadline fsck.repair=yes rootwait
+EOF
+
+cd /boot/firmware
+for file in vmlinuz-* initrd.img-*; do
+  if [ ! -e "/boot/$file" ]; then
+    echo "linux-firmware-raspi3: deleting obsolete /boot/firmware/$file (no longer in /boot)"
+    # Keep going if cleanup of individual files fails. It is better for the end
+    # user to have a working package upgrade and a slight waste of space than a
+    # broken upgrade.
+    rm -f "$file" || true
+  fi
+done
