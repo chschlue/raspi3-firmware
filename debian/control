@@ -3,8 +3,8 @@ Section: non-free/misc
 Priority: optional
 Maintainer: pkg-raspi <pkg-raspi-maintainers@lists.alioth.debian.org>
 Uploaders: Michael Stapelberg <stapelberg@debian.org>
-Build-Depends: debhelper (>= 9)
-Standards-Version: 3.9.7
+Build-Depends: debhelper (>= 10)
+Standards-Version: 3.9.8
 Homepage: https://github.com/raspberrypi/firmware
 
 Package: linux-firmware-raspi3
