@@ -7,7 +7,7 @@ Standards-Version: 3.9.7
 Homepage: https://github.com/raspberrypi/firmware
 
 Package: linux-firmware-raspi3
-Architecture: armhf
+Architecture: arm64
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Raspberry Pi 3 GPU firmware and bootloaders
  This package contains all the proprietary files necessary to boot a
