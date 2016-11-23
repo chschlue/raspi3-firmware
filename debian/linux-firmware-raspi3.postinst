@@ -10,10 +10,10 @@ case "$1" in
         exit 1
       fi
     fi
-    for file in /usr/lib/linux-firmware-raspi2/*
+    for file in /usr/lib/linux-firmware-raspi3/*
     do
 	file=$( basename "$file" )
-        cp "/usr/lib/linux-firmware-raspi2/$file" "/boot/firmware/$file"
+        cp "/usr/lib/linux-firmware-raspi3/$file" "/boot/firmware/$file"
         sync -f "/boot/firmware/$file"
     done
     ;;

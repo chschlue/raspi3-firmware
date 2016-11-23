@@ -1,14 +1,14 @@
-Source: linux-firmware-raspi2
-Section: multiverse/misc
+Source: linux-firmware-raspi3
+Section: non-free/misc
 Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.7
 Homepage: https://github.com/raspberrypi/firmware
 
-Package: linux-firmware-raspi2
+Package: linux-firmware-raspi3
 Architecture: armhf
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: RaspberryPi2 GPU firmware and bootloaders
+Description: Raspberry Pi 3 GPU firmware and bootloaders
  This package contains all the proprietary files necessary to boot a
- RaspberryPi2 board.
+ Raspberry Pi 3 board.

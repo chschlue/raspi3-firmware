@@ -23,7 +23,7 @@ include /usr/share/dpkg/default.mk
 
 override_dh_install:
 	dh_install
-	rm debian/linux-firmware-raspi2/usr/lib/linux-firmware-raspi2/LICENCE.broadcom
+	rm debian/linux-firmware-raspi3/usr/lib/linux-firmware-raspi3/LICENCE.broadcom
 
 # debmake generated override targets
 # This is example for Cmake (See http://bugs.debian.org/641051 )
