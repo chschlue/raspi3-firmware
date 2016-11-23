@@ -14,7 +14,9 @@ case "$1" in
     do
 	file=$( basename "$file" )
         cp "/usr/lib/linux-firmware-raspi3/$file" "/boot/firmware/$file"
-        sync -f "/boot/firmware/$file"
+        # sync might fail when running under qemu, which, as of version 2.7,
+        # has not implemented the syncfs syscall.
+        sync -f "/boot/firmware/$file" || true
     done
     ;;
 esac
