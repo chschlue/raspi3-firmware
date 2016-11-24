@@ -6,6 +6,8 @@ Uploaders: Michael Stapelberg <stapelberg@debian.org>
 Build-Depends: debhelper (>= 10)
 Standards-Version: 3.9.8
 Homepage: https://github.com/raspberrypi/firmware
+Vcs-Git: https://anonscm.debian.org/git/pkg-raspi/linux-firmware-raspi3.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-raspi/linux-firmware-raspi3.git/
 
 Package: linux-firmware-raspi3
 Architecture: arm64
