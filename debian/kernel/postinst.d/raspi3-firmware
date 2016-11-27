@@ -17,27 +17,27 @@ fi
 
 if ! ischroot; then
   if ! mountpoint -q /boot/firmware; then
-    echo "linux-firmware-raspi3: missing /boot/firmware, did you forget to mount it?" >&2
+    echo "raspi3-firmware: missing /boot/firmware, did you forget to mount it?" >&2
     exit 1
   fi
 fi
 
 latest_kernel=$(ls -1 /boot/vmlinuz-* | sort -r | head -1)
 if [ -z "$latest_kernel" ]; then
-  echo "linux-firmware-raspi3: no kernel found in /boot/vmlinuz-*, cannot populate /boot/firmware"
+  echo "raspi3-firmware: no kernel found in /boot/vmlinuz-*, cannot populate /boot/firmware"
   exit 0
 fi
 
 latest_initrd=$(ls -1 /boot/initrd.img-* | sort -r | head -1)
 if [ -z "$latest_initrd" ]; then
-  echo "linux-firmware-raspi3: no initrd found in /boot/initrd.img-*, cannot populate /boot/firmware"
+  echo "raspi3-firmware: no initrd found in /boot/initrd.img-*, cannot populate /boot/firmware"
   exit 0
 fi
 
 latest_dtb="/usr/lib/linux-image-${latest_kernel#/boot/vmlinuz-}/broadcom/bcm2837-rpi-3-b.dtb"
 
 if [ ! -e "$latest_dtb" ]; then
-  echo "linux-firmware-raspi3: device tree file ${latest_dtb} does not exist, cannot populate /boot/firmware"
+  echo "raspi3-firmware: device tree file ${latest_dtb} does not exist, cannot populate /boot/firmware"
   exit 0
 fi
 
@@ -72,7 +72,7 @@ EOF
 cd /boot/firmware
 for file in vmlinuz-* initrd.img-*; do
   if [ ! -e "/boot/$file" ]; then
-    echo "linux-firmware-raspi3: deleting obsolete /boot/firmware/$file (no longer in /boot)"
+    echo "raspi3-firmware: deleting obsolete /boot/firmware/$file (no longer in /boot)"
     # Keep going if cleanup of individual files fails. It is better for the end
     # user to have a working package upgrade and a slight waste of space than a
     # broken upgrade.

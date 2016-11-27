@@ -1,3 +1,10 @@
+raspi3-firmware (1.20161123-2) unstable; urgency=medium
+
+  * Rename package to raspi3-firmware to be consistent with the remaining
+    *-firmware packages (Thanks Ben Hutchings for the hint)
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Sun, 27 Nov 2016 21:53:06 +0100
+
 linux-firmware-raspi3 (1.20161123-1) unstable; urgency=medium
 
   * Initial upload of the package to Debian, based on the

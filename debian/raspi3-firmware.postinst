@@ -13,20 +13,20 @@ case "$1" in
       fi
     fi
 
-    for file in /usr/lib/linux-firmware-raspi3/*
+    for file in /usr/lib/raspi3-firmware/*
     do
       file=$( basename "$file" )
-      cp "/usr/lib/linux-firmware-raspi3/$file" "/boot/firmware/$file"
+      cp "/usr/lib/raspi3-firmware/$file" "/boot/firmware/$file"
       # sync might fail when running under qemu, which, as of version 2.7,
       # has not implemented the syncfs syscall.
       sync -f "/boot/firmware/$file" || true
     done
 
     if [ -z "$2" ]; then
-      # Manually trigger the kernel postinst hook when linux-firmware-raspi3 is
+      # Manually trigger the kernel postinst hook when raspi3-firmware is
       # installed for the first time, as the kernel package might already be
       # installed and hence the hook would not get triggered otherwise.
-      DEB_MAINT_PARAMS="configure" /etc/kernel/postinst.d/linux-firmware-raspi3
+      DEB_MAINT_PARAMS="configure" /etc/kernel/postinst.d/raspi3-firmware
     fi
     ;;
 esac
