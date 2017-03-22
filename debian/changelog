@@ -1,3 +1,9 @@
+raspi3-firmware (1.20170317-2) experimental; urgency=medium
+
+  * initramfs-tools: move raspi3-firmware from hooks to post-update.d
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Wed, 22 Mar 2017 14:58:43 +0100
+
 raspi3-firmware (1.20170317-1) experimental; urgency=medium
 
   * New upstream version 1.20170317
