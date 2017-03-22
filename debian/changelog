@@ -1,3 +1,13 @@
+raspi3-firmware (1.20170317-3) experimental; urgency=medium
+
+  * fix hook location: s/initramfs-tools/initramfs/
+  * hook: ignore temporary .dpkg-bak files
+  * cmdline: mount root fs read/write for resizing
+  * add raspi3-firmware-fsck initramfs-tools hook
+  * remove old conffile for users who upgrade in-place
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Wed, 22 Mar 2017 18:08:32 +0100
+
 raspi3-firmware (1.20170317-2) experimental; urgency=medium
 
   * initramfs-tools: move raspi3-firmware from hooks to post-update.d
