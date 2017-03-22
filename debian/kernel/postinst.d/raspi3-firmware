@@ -66,7 +66,7 @@ EOF
 # without parameters for drivers we do not have (e.g. dwc_otg.lpm_enable) or
 # parameters we do not need (e.g. rootfstype=, as we are using an initrd).
 cat >/boot/firmware/cmdline.txt <<EOF
-console=ttyAMA0,115200 root=/dev/mmcblk0p2 elevator=deadline fsck.repair=yes rootwait
+console=ttyAMA0,115200 root=/dev/mmcblk0p2 rw elevator=deadline fsck.repair=yes rootwait
 EOF
 
 cd /boot/firmware
