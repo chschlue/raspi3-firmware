@@ -1,3 +1,18 @@
+raspi3-firmware (1.20170317-1) experimental; urgency=medium
+
+  * New upstream version 1.20170317
+    (git revision 509beaab0e102cf6decf209922669700c9ac5576)
+  * Upload to experimental during the freeze
+  * The new upstream version populates the device tree with the ethernet MAC
+    address, so the MAC address will persist across reboots.
+  * Add /etc/initramfs-tools/hooks/raspi3-firmware to also update the files in
+    /boot/firmware/ when only the initramfs is being updated (as opposed to
+    kernel and initramfs).
+  * Switch from Conflicts+Replaces to Breaks+Replaces, as per the lintian
+    warning conflicts-with-version.
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Wed, 22 Mar 2017 12:40:36 +0100
+
 raspi3-firmware (1.20161123-2) unstable; urgency=medium
 
   * Rename package to raspi3-firmware to be consistent with the remaining
