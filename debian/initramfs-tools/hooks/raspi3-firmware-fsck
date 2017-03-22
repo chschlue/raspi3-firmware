@@ -1,0 +1,8 @@
+#!/bin/sh
+# vim:ts=2:sw=2:et
+
+# The fsck hook uses /usr/lib/klibc/bin/fstype, which does not detect vfat.
+# Hence, we just install the fsck binaries of the file systems we know we use:
+. /usr/share/initramfs-tools/hook-functions
+copy_exec /sbin/fsck.ext4
+copy_exec /sbin/fsck.vfat

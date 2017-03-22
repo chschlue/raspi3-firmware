@@ -1,3 +1,4 @@
 boot/* usr/lib/raspi3-firmware
 debian/kernel etc
 debian/initramfs etc
+debian/initramfs-tools usr/share
