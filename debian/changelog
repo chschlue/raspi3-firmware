@@ -1,3 +1,9 @@
+raspi3-firmware (1.20170317-4) experimental; urgency=medium
+
+  * Add XS-Autobuild: yes, as non-free packages are not automatically built by default
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Thu, 08 Jun 2017 09:17:26 +0200
+
 raspi3-firmware (1.20170317-3) experimental; urgency=medium
 
   * fix hook location: s/initramfs-tools/initramfs/
