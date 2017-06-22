@@ -22,13 +22,13 @@ if ! ischroot; then
   fi
 fi
 
-latest_kernel=$(ls -1 /boot/vmlinuz-* | grep -v '\.dpkg-bak$' | sort -r | head -1)
+latest_kernel=$(ls -1 /boot/vmlinuz-* | grep -v '\.dpkg-bak$' | sort -V -r | head -1)
 if [ -z "$latest_kernel" ]; then
   echo "raspi3-firmware: no kernel found in /boot/vmlinuz-*, cannot populate /boot/firmware"
   exit 0
 fi
 
-latest_initrd=$(ls -1 /boot/initrd.img-* | grep -v '\.dpkg-bak$' | sort -r | head -1)
+latest_initrd=$(ls -1 /boot/initrd.img-* | grep -v '\.dpkg-bak$' | sort -V -r | head -1)
 if [ -z "$latest_initrd" ]; then
   echo "raspi3-firmware: no initrd found in /boot/initrd.img-*, cannot populate /boot/firmware"
   exit 0
