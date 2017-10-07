@@ -11,7 +11,7 @@ Vcs-Browser: https://anonscm.debian.org/cgit/pkg-raspi/raspi3-firmware.git/
 XS-Autobuild: yes
 
 Package: raspi3-firmware
-Architecture: arm64
+Architecture: arm64 armhf
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Breaks: linux-firmware-raspi3 (<< 1.20161123-2)
 Replaces: linux-firmware-raspi3 (<< 1.20161123-2)

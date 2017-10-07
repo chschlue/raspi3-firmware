@@ -10,6 +10,18 @@ exec </dev/null >&2
 
 eval set -- "$DEB_MAINT_PARAMS"
 
+
+# Detect appropriate .dtb
+arch=$(dpkg --print-architecture)
+case ${arch} in
+  armhf)
+    dtb=bcm2836-rpi-2-b.dtb
+    ;;
+  arm64)
+    dtb=bcm2837-rpi-3-b.dtb
+    ;;
+esac
+
 # Only run on configure to avoid unnecessary work.
 if [ -z "$1" ] || [ "$1" != "configure" ]; then
   exit 0
@@ -34,7 +46,7 @@ if [ -z "$latest_initrd" ]; then
   exit 0
 fi
 
-latest_dtb="/usr/lib/linux-image-${latest_kernel#/boot/vmlinuz-}/broadcom/bcm2837-rpi-3-b.dtb"
+latest_dtb="/usr/lib/linux-image-${latest_kernel#/boot/vmlinuz-}/broadcom/${dtb}"
 
 if [ ! -e "$latest_dtb" ]; then
   echo "raspi3-firmware: device tree file ${latest_dtb} does not exist, cannot populate /boot/firmware"
@@ -49,10 +61,19 @@ latest_kernel_basename=$(basename "$latest_kernel")
 latest_initrd_basename=$(basename "$latest_initrd")
 latest_dtb_basename=$(basename "$latest_dtb")
 
-cat >/boot/firmware/config.txt <<EOF
+if [ "arm64" = "$arch" ]; then
+  cat >/boot/firmware/config.txt <<EOF
 # Switch the CPU from ARMv7 into ARMv8 (aarch64) mode
 arm_control=0x200
 
+EOF
+else
+  # Truncate the file so that we can append in the next statement
+  cat >/boot/firmware/config.txt <<EOF
+EOF
+fi
+
+cat >>/boot/firmware/config.txt <<EOF
 enable_uart=1
 
 device_tree=${latest_dtb_basename}
