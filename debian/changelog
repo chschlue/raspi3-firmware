@@ -1,3 +1,17 @@
+raspi3-firmware (1.20171006-1) unstable; urgency=medium
+
+  * Fix sort order for newer kernel versions (Patch by Martin Schitter)
+  * Avail package on armhf (patch by Vagrant Cascadian) (Closes: #858428)
+  * Add kernel/postrm.d/raspi3-firmware to clean up after kernel removal
+    (Patch by Martin Schitter)
+  * New upstream version 1.20171006
+    (git revision 2669578d1449255edf23f38ed98d208ab73faed7)
+  * set net.ifnames=0 in cmdline
+  * Add missing dpkg-maintscript-helper call to postinst, postrm
+  * experimental to unstable as the freeze is over
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Sat, 07 Oct 2017 08:56:04 +0200
+
 raspi3-firmware (1.20170317-4) experimental; urgency=medium
 
   * Add XS-Autobuild: yes, as non-free packages are not automatically built by default
