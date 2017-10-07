@@ -22,10 +22,14 @@ case ${arch} in
     ;;
 esac
 
-# Only run on configure to avoid unnecessary work.
-if [ -z "$1" ] || [ "$1" != "configure" ]; then
-  exit 0
-fi
+# Only run on configure and remove to avoid unnecessary work.
+case "$1" in
+  configure|remove)
+    ;;
+  *)
+    exit 0
+    ;;
+esac
 
 if ! ischroot; then
   if ! mountpoint -q /boot/firmware; then

@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /etc/kernel/postinst.d/raspi3-firmware "$@"
