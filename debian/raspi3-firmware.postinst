@@ -31,6 +31,8 @@ case "$1" in
     ;;
 esac
 
+dpkg-maintscript-helper rm_conffile /etc/kernel/postinst.d/linux-firmware-raspi3 1.20161123-2 -- "$@"
+
 #DEBHELPER#
 
 exit 0
