@@ -1,3 +1,10 @@
+raspi3-firmware (1.20171006-2) unstable; urgency=medium
+
+  * Fix serial console on Linux ≥ 4.14
+  * Add console=tty0 for boot messages on the attached monitor (if any)
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Thu, 04 Jan 2018 17:47:11 +0100
+
 raspi3-firmware (1.20171006-1) unstable; urgency=medium
 
   * Fix sort order for newer kernel versions (Patch by Martin Schitter)
