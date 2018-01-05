@@ -1,3 +1,11 @@
+raspi3-firmware (1.20171201-1) unstable; urgency=medium
+
+  * New upstream version 1.20171201
+    (git revision 9426e18b87b343b84280ad2e4151863e36595c4a)
+  * Add the Raspberry Pi 3-specific firmware file brcmfmac43430-sdio.txt
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Fri, 05 Jan 2018 07:56:12 +0100
+
 raspi3-firmware (1.20171006-2) unstable; urgency=medium
 
   * Fix serial console on Linux ≥ 4.14
