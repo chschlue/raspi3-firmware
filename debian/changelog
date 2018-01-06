@@ -1,3 +1,9 @@
+raspi3-firmware (1.20171201-2) unstable; urgency=medium
+
+  * postinst: also trigger hook on upgrades, not just first installation
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Sat, 06 Jan 2018 18:14:17 +0100
+
 raspi3-firmware (1.20171201-1) unstable; urgency=medium
 
   * New upstream version 1.20171201
