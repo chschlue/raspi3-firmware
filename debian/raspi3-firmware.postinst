@@ -6,11 +6,13 @@ set -e
 case "$1" in
   configure)
 
-    if ! ischroot; then
-      if ! mountpoint -q /boot/firmware; then
-        echo "Error: missing /boot/firmware, did you forget to mount it?" >&2
-        exit 1
-      fi
+    if ischroot ; then
+      true # chroot detected - skip mount point check
+    elif test -e /usr/bin/systemd-detect-virt && systemd-detect-virt -q ; then
+      true # virtualization detected - skip mount point check
+    elif ! mountpoint -q /boot/firmware; then
+      echo "Error: missing /boot/firmware, did you forget to mount it?" >&2
+      exit 1
     fi
 
     # Ensure the target directory exists. See https://bugs.debian.org/887062
