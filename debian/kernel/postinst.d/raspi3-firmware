@@ -10,18 +10,6 @@ exec </dev/null >&2
 
 eval set -- "$DEB_MAINT_PARAMS"
 
-
-# Detect appropriate .dtb
-arch=$(dpkg --print-architecture)
-case ${arch} in
-  armhf)
-    dtb=bcm2836-rpi-2-b.dtb
-    ;;
-  arm64)
-    dtb=bcm2837-rpi-3-b.dtb
-    ;;
-esac
-
 # Only run on configure and remove to avoid unnecessary work.
 case "$1" in
   configure|remove)
@@ -55,20 +43,28 @@ if [ -z "$latest_initrd" ]; then
   exit 0
 fi
 
-latest_dtb="/usr/lib/linux-image-${latest_kernel#/boot/vmlinuz-}/broadcom/${dtb}"
-
-if [ ! -e "$latest_dtb" ]; then
-  echo "raspi3-firmware: device tree file ${latest_dtb} does not exist, cannot populate /boot/firmware"
-  exit 0
-fi
-
 cp "$latest_kernel" /boot/firmware/
 cp "$latest_initrd" /boot/firmware/
-cp "$latest_dtb" /boot/firmware/
+
+# copy and rename the available device tree binaries
+# the bootloader will pick the right device tree binary
+# if it is named according to the system on chip family name
+arch=$(dpkg --print-architecture)
+if [ "arm64" = "$arch" ]; then
+  dtb_path="/usr/lib/linux-image-${latest_kernel#/boot/vmlinuz-}/broadcom"
+else
+  # there is no vendor subdirectory for armhf
+  dtb_path="/usr/lib/linux-image-${latest_kernel#/boot/vmlinuz-}"
+fi
+
+pi2b_dtb=${dtb_path}/bcm2836-rpi-2-b.dtb
+pi3b_dtb=${dtb_path}/bcm2837-rpi-3-b.dtb
+
+[ -e "${pi2b_dtb}" ] && cp "${pi2b_dtb}" /boot/firmware/bcm2709-rpi-2-b.dtb
+[ -e "${pi3b_dtb}" ] && cp "${pi3b_dtb}" /boot/firmware/bcm2710-rpi-3-b.dtb
 
 latest_kernel_basename=$(basename "$latest_kernel")
 latest_initrd_basename=$(basename "$latest_initrd")
-latest_dtb_basename=$(basename "$latest_dtb")
 
 if [ "arm64" = "$arch" ]; then
   cat >/boot/firmware/config.txt <<EOF
@@ -85,7 +81,6 @@ fi
 cat >>/boot/firmware/config.txt <<EOF
 enable_uart=1
 
-device_tree=${latest_dtb_basename}
 kernel=${latest_kernel_basename}
 # For details on the initramfs directive, see
 # https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=10532
