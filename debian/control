@@ -12,7 +12,7 @@ XS-Autobuild: yes
 
 Package: raspi3-firmware
 Architecture: arm64 armhf
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, dosfstools
 Breaks: linux-firmware-raspi3 (<< 1.20161123-2)
 Replaces: linux-firmware-raspi3 (<< 1.20161123-2)
 Description: Raspberry Pi 3 GPU firmware and bootloaders
