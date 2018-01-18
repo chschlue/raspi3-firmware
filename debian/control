@@ -15,8 +15,8 @@ Architecture: arm64 armhf
 Depends: ${shlibs:Depends}, ${misc:Depends}, dosfstools
 Breaks: linux-firmware-raspi3 (<< 1.20161123-2)
 Replaces: linux-firmware-raspi3 (<< 1.20161123-2)
-Description: Raspberry Pi 3 GPU firmware and bootloaders
+Description: Raspberry Pi 2 and 3 GPU firmware and bootloaders
  This package contains all the proprietary files necessary to boot a
- Raspberry Pi 3 board.
+ Raspberry Pi 2 or 3 board.
  .
  Raspberry Pi is a trademark of the Raspberry Pi Foundation.
