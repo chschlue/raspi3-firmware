@@ -38,6 +38,9 @@ if ! ischroot; then
   fi
 fi
 
+# Ensure the target directory exists. See https://bugs.debian.org/887062
+mkdir -p /boot/firmware
+
 latest_kernel=$(ls -1 /boot/vmlinuz-* | grep -v '\.dpkg-bak$' | sort -V -r | head -1)
 if [ -z "$latest_kernel" ]; then
   echo "raspi3-firmware: no kernel found in /boot/vmlinuz-*, cannot populate /boot/firmware"

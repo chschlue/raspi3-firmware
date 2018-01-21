@@ -13,6 +13,9 @@ case "$1" in
       fi
     fi
 
+    # Ensure the target directory exists. See https://bugs.debian.org/887062
+    mkdir -p /boot/firmware
+
     for file in /usr/lib/raspi3-firmware/*
     do
       file=$( basename "$file" )
