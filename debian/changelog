@@ -1,3 +1,9 @@
+raspi3-firmware (1.20171201-3) unstable; urgency=medium
+
+  * Ensure /boot/firmware exists (Closes: #887062)
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Sun, 21 Jan 2018 15:35:47 +0100
+
 raspi3-firmware (1.20171201-2) unstable; urgency=medium
 
   * postinst: also trigger hook on upgrades, not just first installation
