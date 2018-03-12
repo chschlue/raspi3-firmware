@@ -1,3 +1,14 @@
+raspi3-firmware (1.20171201-4) unstable; urgency=medium
+
+  [ Matthias Lüscher ]
+  * Do not check mount point if virtualization gets detected.
+  * Copy and rename all possible device tree binaries.
+  * Added missing dosfstools dependency.
+  * Increase cma memory to 64M to allow proper vc4 GPU initialization.
+  * Adjusted package description.
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Mon, 12 Mar 2018 20:29:09 +0100
+
 raspi3-firmware (1.20171201-3) unstable; urgency=medium
 
   * Ensure /boot/firmware exists (Closes: #887062)
