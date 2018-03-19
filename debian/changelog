@@ -1,3 +1,10 @@
+raspi3-firmware (1.20180316-1) unstable; urgency=medium
+
+  * New upstream version 1.20180316
+    (for compatibility with the Raspberry Pi 3 B+)
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Mon, 19 Mar 2018 19:27:04 +0100
+
 raspi3-firmware (1.20171201-4) unstable; urgency=medium
 
   [ Matthias Lüscher ]
