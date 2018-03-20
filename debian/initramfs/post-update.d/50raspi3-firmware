@@ -6,4 +6,4 @@ if [ -n "$INITRAMFS_TOOLS_KERNEL_HOOK" ]; then
   exit 0
 fi
 
-DEB_MAINT_PARAMS=configure /etc/kernel/postinst.d/raspi3-firmware
+DEB_MAINT_PARAMS=configure /etc/kernel/postinst.d/50raspi3-firmware
