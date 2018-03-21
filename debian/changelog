@@ -1,3 +1,9 @@
+raspi3-firmware (1.20180316-3) unstable; urgency=medium
+
+  * correct path in postinst script
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Wed, 21 Mar 2018 13:53:07 +0100
+
 raspi3-firmware (1.20180316-2) unstable; urgency=medium
 
   * Rename hooks to 50raspi3-firmware (Closes: #848101)
