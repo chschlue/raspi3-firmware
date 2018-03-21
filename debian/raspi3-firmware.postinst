@@ -30,7 +30,7 @@ case "$1" in
     # Manually trigger the kernel postinst hook when raspi3-firmware is first
     # installed (or upgraded), as the kernel package might already be installed
     # (or not upgraded) and hence the hook would not get triggered otherwise.
-    DEB_MAINT_PARAMS="configure" /etc/kernel/postinst.d/raspi3-firmware
+    DEB_MAINT_PARAMS="configure" /etc/kernel/postinst.d/50raspi3-firmware
     ;;
 esac
 
