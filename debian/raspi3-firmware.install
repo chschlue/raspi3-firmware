@@ -1,5 +1,7 @@
 boot/* usr/lib/raspi3-firmware
 brcm80211/brcmfmac43430-sdio.txt lib/firmware/brcm
+brcm80211/brcmfmac43455-sdio.txt lib/firmware/brcm
+brcm80211/brcmfmac43455-sdio.clm_blob lib/firmware/brcm
 debian/kernel etc
 debian/initramfs etc
 debian/initramfs-tools usr/share
