@@ -1,0 +1,5 @@
+# CMA pool size
+#CMA=128M
+
+# root filesystem
+#ROOTPART="LABEL=root"
