@@ -99,11 +99,23 @@ if [ $kernelmajor -ge 4 ]; then
   fi
 fi
 
+# Default cma memory pool size for vc4
+CMA=128M
+
+# Default root partition
+ROOTPART="LABEL=root"
+
+# Try and source /etc/default/raspi3-firmware
+
+if [ -r /etc/default/raspi3-firmware ]; then
+        . /etc/default/raspi3-firmware
+fi
+
 # Our cmdline.txt is the default (see http://elinux.org/RPi_cmdline.txt), but
 # without parameters for drivers we do not have (e.g. dwc_otg.lpm_enable) or
 # parameters we do not need (e.g. rootfstype=, as we are using an initrd).
 cat >/boot/firmware/cmdline.txt <<EOF
-console=tty0 console=${serial} root=/dev/mmcblk0p2 rw elevator=deadline fsck.repair=yes net.ifnames=0 cma=64M rootwait
+console=tty0 console=${serial} root=$ROOTPART rw elevator=deadline fsck.repair=yes net.ifnames=0 cma=$CMA rootwait
 EOF
 
 cd /boot/firmware
